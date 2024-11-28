@@ -9,14 +9,12 @@ import (
 
 type Listener int
 
-func (l *Listener) GetLine(line []byte, ack *bool) error {
-	fmt.Println(string(line))
-	*ack = true
+var messagesList []string
+
+func (l *Listener) GetMessages(_ string, messages *[]string) error {
+	*messages = messagesList
 	return nil
 }
-
-var messagesList []string // Global shared list
-
 func (l *Listener) ChatRoom(line string, messages *[]string) error {
 
 	fmt.Println(line)
